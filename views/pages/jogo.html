@@ -4,6 +4,13 @@
 
 <h2 align="center">Katarina Alves da Silva</h2>
 
+<div id="pontos"></div>
+
+<button onclick="velocidade()">velocidade</button>
+<button onclick="reiniciar()">Reiniciar</button> 
+<div class="fb-share-button" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com" class="fb-xfbml-parse-ignore">Compartilhar jogo</a></div>
+
+
 <div id=principal></div>
 <script>
     tabuleiro="<table align=center border=1>";
@@ -19,10 +26,12 @@
     mx=parseInt(Math.random()*10);
     my=parseInt(Math.random()*10);
     vivo=true;
+     soma = 0
     function anda(){
         document.getElementById('td'+cobra[cobra.length-1][0]+'_'+cobra[cobra.length-1][1]).style.background="#ffffff";
         if(mx==cobra[cobra.length-1][0]&&my==cobra[cobra.length-1][1]){
-            mx=parseInt(Math.random()*10);
+     soma = cobra.length * 10;        
+     mx=parseInt(Math.random()*10);
             my=parseInt(Math.random()*10);
             cobra[cobra.length]=[10,10];
         }
@@ -30,6 +39,7 @@
             cobra[x][0]=cobra[x-1][0];
             cobra[x][1]=cobra[x-1][1];
         }
+         document.getElementById('pontos').innerHTML= 'Pontuação: ' + soma
         if(direcao==0)cobra[0][1]--;
         if(direcao==1)cobra[0][0]--;
         if(direcao==2)cobra[0][1]++;
@@ -38,9 +48,12 @@
         if(cobra[0][0]<0||cobra[0][1]<0||cobra[0][0]>9||cobra[0][1]>9)vivo=false;
         document.getElementById('td'+cobra[0][0]+'_'+cobra[0][1]).style.background="#333333";
         document.getElementById('td'+mx+'_'+my).style.background="#ff3333";
-        if(vivo)setTimeout('anda()',300);
+        if(vivo)setTimeout('anda()',700);
         else alert('Fim de jogo');
     }
+     function velocidade(){
+       setTimeout('anda()',50);
+}
     anda();
     function pegadirecao(tecla){
         /*alert(tecla);*/
@@ -49,6 +62,10 @@
         if(tecla==39)direcao=2;
         if(tecla==40)direcao=3;
     }
+     function reiniciar(){
+     location.reload();
+     document.addEventListener('bt');
+}
 </script>
 </body>
 </html>
